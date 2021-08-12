@@ -14,12 +14,15 @@ const app = new App({
 app.command('/rando', async ({ ack, command, client }) => {
     try {
         await ack();
+        // Get the members of the channel
         const result = await client.conversations.members({
             channel: command.channel_id
         });
         // Filter out the person who called the command
         let members = result.members.filter(user => user != command.user_id);
+        // Select a user at random (may include bots)
         const randomUser = members[Math.floor(Math.random() * members.length)];
+        // Send a message to the channel with the selected user mentioned
         client.chat.postMessage({
             channel: command.channel_id,
             text: "Congrats <@" + randomUser + "> :tada: !!"
