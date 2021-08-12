@@ -5,7 +5,7 @@ const { App, WorkflowStep } = require('@slack/bolt');
 // Initializes your app in socket mode with your app token and signing secret
 const app = new App({
     token: process.env.SLACK_BOT_TOKEN,
-    signingSecret: process.env.SLACK_SIGNING_SECRET,
+ //   signingSecret: process.env.SLACK_SIGNING_SECRET,
     socketMode: true, // add this
     appToken: process.env.SLACK_APP_TOKEN // add this
 });
