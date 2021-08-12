@@ -14,12 +14,16 @@ const app = new App({
 app.command('/rando', async ({ ack, command, client }) => {
     try {
         await ack();
+
+        // Get all the users in the workspace - to get rid of bot users below!
+        const usersResult = await client.users.list();
+
         // Get the members of the channel
-        const result = await client.conversations.members({
+        const membersResult = await client.conversations.members({
             channel: command.channel_id
         });
-        // Filter out the person who called the command
-        let members = result.members.filter(user => user != command.user_id);
+        // Filter out the person who called the command and any bots/apps
+        let members = membersResult.members.filter(user => user != command.user_id && usersResult.members.find(userEntry => userEntry.id === user && !userEntry.is_bot && !userEntry.is_app_user));
         // Select a user at random (may include bots)
         const randomUser = members[Math.floor(Math.random() * members.length)];
         // Send a message to the channel with the selected user mentioned
