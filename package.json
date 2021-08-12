@@ -1,0 +1,23 @@
+{
+  "name": "randopicker",
+  "version": "1.0.0",
+  "description": "Pick a random channel member",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smocky/randopicker.git"
+  },
+  "author": "Smock",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/smocky/randopicker/issues"
+  },
+  "homepage": "https://github.com/smocky/randopicker#readme",
+  "dependencies": {
+    "@slack/bolt": "^3.5.0",
+    "dotenv": "^10.0.0"
+  }
+}
